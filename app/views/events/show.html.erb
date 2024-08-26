@@ -1,0 +1,14 @@
+<h1>Event Details</h1>
+
+<p>
+  <strong>Date:</strong> 
+  <%= @event.date %>
+  
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= link_to @event.creator.email, user_path(@event.creator) %>
+</p>
+
+<%= link_to 'Back', events_path %>

@@ -1,7 +1,19 @@
-<h1>Danh sách các sự kiện</h1>
+<h1>All Events</h1>
 
+<% if user_signed_in? %>
+  <p>Welcome, <%= current_user.email %>!</p>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to 'Sign In', new_user_session_path %> |
+  <%= link_to 'Sign Up', new_user_registration_path %>
+<% end %>
 <ul>
   <% @events.each do |event| %>
-    <li><%= event.date %></li>
+    <li>
+      <strong>Date:</strong>
+      <%= event.date %>
+      <%= link_to 'Details', event_path(event), class: 'btn btn-primary' %>
+      <br><br><br>
+    </li>
   <% end %>
 </ul>

@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+/* app/assets/stylesheets/application.css */
+.btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
