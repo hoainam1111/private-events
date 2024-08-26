@@ -1,4 +1,4 @@
-<h1>All Events</h1>
+
 
 <% if user_signed_in? %>
   <p>Welcome, <%=  link_to current_user.email, user_path(current_user) %>!</p>
@@ -7,13 +7,26 @@
   <%= link_to 'Sign In', new_user_session_path %> |
   <%= link_to 'Sign Up', new_user_registration_path %>
 <% end %>
-<ul>
-  <% @events.each do |event| %>
-    <li>
-      <strong>Date:</strong>
-      <%= event.date %>
-      <%= link_to 'Details', event_path(event), class: 'btn btn-primary' %>
-      <br><br><br>
-    </li>
-  <% end %>
-</ul>
+<h1>Events</h1>
+
+<h2>Past Events:</h2>
+<% if @past_events.any? %>
+  <ul>
+    <% @past_events.each do |event| %>
+      <li><%= event.date %> - <%= link_to 'Show', event_path(event) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No past events.</p>
+<% end %>
+
+<h2>Upcoming Events:</h2>
+<% if @upcoming_events.any? %>
+  <ul>
+    <% @upcoming_events.each do |event| %>
+      <li><%= event.date %> - <%= link_to 'Show', event_path(event) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No upcoming events.</p>
+<% end %>
