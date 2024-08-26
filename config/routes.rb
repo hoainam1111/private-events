@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'     
   end
   root to: 'events#index'
-  resources :events
+  resources :events do
+    resources :attendances
+  end
   resources :users
 end

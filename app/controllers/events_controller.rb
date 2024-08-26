@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
   def new
-    @event = Event.new
+    @event = current_user.events.build
   end
   def create
     @event = current_user.events.build(event_params)

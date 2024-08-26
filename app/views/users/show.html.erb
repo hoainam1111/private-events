@@ -9,3 +9,13 @@
     </li>
   <% end %>
 </ul>
+<h1>Attended</h1>
+<% if @attended_events.any? %>
+  <ul>
+    <% @attended_events.each do |event| %>
+      <li><%= event.date %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>This user has not attended any events yet.</p>
+<% end %>
