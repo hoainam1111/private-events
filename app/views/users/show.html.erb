@@ -11,11 +11,30 @@
 </ul>
 <h1>Attended</h1>
 <% if @attended_events.any? %>
-  <ul>
-    <% @attended_events.each do |event| %>
-      <li><%= event.date %></li>
-    <% end %>
-  </ul>
+  <% past_events = @attended_events.select { |event| event.date < Date.today } %>
+  <% future_events = @attended_events.select { |event| event.date >= Date.today } %>
+
+  <h3>Past Events:</h3>
+  <% if past_events.any? %>
+    <ul>
+      <% past_events.each do |event| %>
+        <li><%= event.date %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No past events.</p>
+  <% end %>
+
+  <h3>Future Events:</h3>
+  <% if future_events.any? %>
+    <ul>
+      <% future_events.each do |event| %>
+        <li><%= event.date %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No upcoming events.</p>
+  <% end %>
 <% else %>
   <p>This user has not attended any events yet.</p>
 <% end %>
