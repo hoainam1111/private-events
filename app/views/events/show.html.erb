@@ -1,6 +1,12 @@
 <h1><%= @event.date %></h1>
 <p>Created by: <%= link_to @event.creator.email, user_path(@event.creator) %></p>
-
+<br>
+<% if @event.creator == current_user %>
+  <%= link_to 'Edit Event', edit_event_path(@event) %>
+  <br>
+  <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<br><br><br>
 <% if user_signed_in? %>
   <% if @event.attendees.include?(current_user) %>
     <%= button_to 'Cancel Attendance', event_attendance_path(@event, current_user), method: :delete %>
